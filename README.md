@@ -102,7 +102,7 @@ paginate:<br />
 
 - Iremos avaliar cada feature, conceito, pattern, tudo o que você fizer de adicional. Tudo além do proposta contará pontos!
 
-- Caso você esteja concorrendo a uma vaga de Sênior, testes unitários são necessários no teste. Se você estiver concorrendo a uma vaga de JR ou Pleno, não é obrigatorio, mas é um grande diferencial caso seja aplicado os testes.
+- Caso você esteja concorrendo a uma vaga de Sênior ou Pleno, testes unitários são necessários no teste. Se você estiver concorrendo a uma vaga de JR, não é obrigatorio, mas é um grande diferencial caso seja aplicado os testes.
 
 - Faça commits regulares. Eles são melhores do que um commit gigantesco. Gostaríamos de ver commits organizados e padronizados, então capriche neles!
 
