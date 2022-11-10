@@ -110,10 +110,10 @@ paginate:<br />
 
 ### **Links úteis**:
 
-https://github.com/BeeTech-global/bee-stylish/tree/master/commits
-https://www.conventionalcommits.org/en/v1.0.0/
-https://www.pedrodias.net/ux/dicas-de-acessibilidade-web
-https://github.com/raphaelmelo/seo-for-devs
+- https://github.com/BeeTech-global/bee-stylish/tree/master/commits
+- https://www.conventionalcommits.org/en/v1.0.0/
+- https://www.pedrodias.net/ux/dicas-de-acessibilidade-web
+- https://github.com/raphaelmelo/seo-for-devs
 
 Qualquer problema por favor contate seu recruiter.
 
