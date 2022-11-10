@@ -100,7 +100,9 @@ paginate:<br />
 
 - Esperamos que você consiga completar o mínimo do desafio; Mas não se esqueça, que aqui no PicPay é muito concorrido, então você irá concorrer com outras pessoas desenvolvedoras que também querem muito trabalhar conosco, então, arrebenta, mostre o seu melhor! 😉
 
-- Iremos avaliar cada feature, conceito, pattern, tudo o que você fizer de adicional. Tudo além do proposta contará pontos!
+- Caso precise de mais tempo para completar o desafio, converse com a recruiter para alinhar
+
+- Iremos avaliar cada feature, conceito, design pattern, performance, conceitos de SEO, tudo o que você fizer de adicional. Tudo além do proposta contará pontos!
 
 - Caso você esteja concorrendo a uma vaga de Sênior ou Pleno, testes unitários são necessários no teste. Se você estiver concorrendo a uma vaga de JR, não é obrigatorio, mas é um grande diferencial caso seja aplicado os testes.
 
@@ -110,6 +112,8 @@ paginate:<br />
 
 https://github.com/BeeTech-global/bee-stylish/tree/master/commits
 https://www.conventionalcommits.org/en/v1.0.0/
+https://www.pedrodias.net/ux/dicas-de-acessibilidade-web
+https://github.com/raphaelmelo/seo-for-devs
 
 Qualquer problema por favor contate seu recruiter.
 
