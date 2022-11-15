@@ -1,0 +1,29 @@
+
+<div class="row mx-0" style="height: 100%;">
+    <div class="col-4 login_form center_div">
+        <div class="w-75">
+            <h2 class="logo"><strong class="logo_bold">Pay</strong>Friends</h2>
+            <h1 class="bem_vindo">Bem vindo de volta</h1>
+            <form class="example-form">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput [formControl]="login.email">
+                    <mat-error *ngIf="login.email.invalid">{{getErrorEmailMessage()}}</mat-error>
+                </mat-form-field>
+                    
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Senha</mat-label>
+                    <input matInput [formControl]="login.senha" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="login.senha.invalid">{{getErrorSenhaMessage()}}</mat-error>
+                </mat-form-field>
+            </form>
+            <button mat-flat-button class="primary_button w-100">Entrar</button>
+        </div>
+    </div>
+    <div class="col center_div">
+        <img src="assets/img/login_image.svg" width="400" alt="login" />
+    </div>
+</div>
