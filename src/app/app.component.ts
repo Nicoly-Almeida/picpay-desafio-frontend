@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements  AfterViewInit{
   title: string;
   mostrarMenu: boolean = false;
 
-  ngOnInit() {
+  ngAfterViewInit() {
    this.title = 'Desafio Picpay Front-end';
-   this.mostrarMenu = localStorage.getItem('token') ? true : false;
   }
 }

@@ -3,11 +3,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTasksComponent } from '../add-tasks/add-tasks.component';
 import { Task } from 'src/app/shared/model/task';
 import { TaskService } from 'src/app/shared/services/task.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
+import {MatSort, Sort} from '@angular/material/sort';
 import { DeleteTasksComponent } from '../delete-tasks/delete-tasks.component';
-
+import { Page, PageRequest } from 'src/app/_util/pagination';
+import { Item } from 'src/app/shared/interfaces/item.model';
+import { take } from "rxjs/operators";
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+// import { format } from 'date-fns'
 
 
 @Component({
@@ -19,24 +23,64 @@ export class ListTasksComponent implements OnInit {
   tasks: Task[];
   displayedColumns: string[] = ['usuario', "titulo", "data", "valor", "pago", "acoes"];
   dataSource: MatTableDataSource<Task>;
+
+  formGroupPesquisa: FormGroup;
+
+  tituloCheck: boolean = false;
+  dataCheck: boolean = false;
+
+  page: Page<Item> = new Page([], 0);
+  pageEvent: PageEvent;
+  sortEvent: Sort;
+  carregando = false;
+
+  toppings = new FormControl('');
+  toppingList: string[] = ['Título', 'Data'];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private taskService: TaskService, public dialog: MatDialog, ) {
+  constructor(private taskService: TaskService, public dialog: 
+  MatDialog, private formBuilder: FormBuilder) { 
     this.tasks = new Array<Task>();
   }
 
   ngOnInit(): void {
+    this.formGroupPesquisa = this.formBuilder.group({
+      nome: [null]
+    });
+    this.listar();
+  }
+
+  limparPesquisa() {
+    this.formGroupPesquisa.reset();
+    this.tituloCheck = false;
+    this.dataCheck = false;
     this.listar();
   }
 
   listar(){
-    this.taskService.listar().subscribe(
-      result => {
-        this.tasks = result
-        this.dataSource = new MatTableDataSource(this.tasks);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+    this.carregando = true;
+    const queryAdicional = new Map();
+    if (this.formGroupPesquisa.value.nome) {
+      queryAdicional.set("name_like", this.formGroupPesquisa.value.nome);
+    }
+    this.taskService.listar(
+      new PageRequest(
+        {
+            pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
+            pageSize: this.pageEvent ? this.pageEvent.pageSize : 5,
+        },
+        {
+            property: this.sortEvent ? this.sortEvent.active : "id",
+            direction: this.sortEvent ? this.sortEvent.direction : "asc",
+        },
+        queryAdicional
+    )
+    ).pipe(take(1)).subscribe(
+      page => {
+        this.page = page;
+        this.carregando = false;
       }
     ); 
   }
@@ -61,14 +105,14 @@ export class ListTasksComponent implements OnInit {
     )
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
   openDialog(id: string): void {
     const dialogRef = this.dialog.open(AddTasksComponent, {

@@ -28,7 +28,7 @@
       "value": 464.54,
       "date": "2020-02-09T18:20:32Z",
       "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": true
     },
     {
       "id": 4,
@@ -1707,16 +1707,6 @@
       "title": "teste",
       "value": "345",
       "date": "2022-11-25T03:00:00.000Z",
-      "image": "",
-      "isPayed": false
-    },
-    {
-      "id": 173,
-      "name": "Nicoly Figueredo pessoa de Almeida",
-      "username": "",
-      "title": "teste",
-      "value": "345",
-      "date": "2022-11-24T03:00:00.000Z",
       "image": "",
       "isPayed": false
     }
