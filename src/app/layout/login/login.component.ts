@@ -15,21 +15,22 @@ export class LoginComponent implements OnInit {
     senha : new FormControl('', [Validators.required])
   }
 
+
   constructor(private authenticationService: AuthenticationService , private router: Router) { }
 
   ngOnInit(): void {
   }
   
-  async onSubmit() {
+  onSubmit() {
     try {
-      const result = await this.authenticationService.login(this.login);
-      console.log(`Login efetuado: ${result}`);
-
-      // navego para a rota vazia novamente
-      this.router.navigate(['']);
+      this.authenticationService.login(this.login);
     } catch (error) {
       console.error(error);
     }
+  }
+
+  formValid() {
+    return this.login.email.valid && this.login.senha.valid;
   }
   
 

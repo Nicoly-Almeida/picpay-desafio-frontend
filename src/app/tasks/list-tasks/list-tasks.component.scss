@@ -10,3 +10,11 @@
 .body{
     background: #F2F2F2;
 }
+
+table {
+    width: 100%;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #007DFE !important;
+  }

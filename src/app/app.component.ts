@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title: string;
+  mostrarMenu: boolean = false;
 
   ngOnInit() {
    this.title = 'Desafio Picpay Front-end';
+   this.mostrarMenu = localStorage.getItem('token') ? true : false;
   }
 }

@@ -4,10 +4,10 @@
         <div class="w-75">
             <h2 class="logo"><strong class="logo_bold">Pay</strong>Friends</h2>
             <h1 class="bem_vindo">Bem vindo de volta</h1>
-            <form class="example-form">
+            <form (ngSubmit)="onSubmit()" #form="ngForm">
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Email</mat-label>
-                    <input matInput [formControl]="login.email">
+                    <input matInput [formControl]="login.email" type="email">
                     <mat-error *ngIf="login.email.invalid">{{getErrorEmailMessage()}}</mat-error>
                 </mat-form-field>
                     
@@ -19,8 +19,8 @@
                     </button>
                     <mat-error *ngIf="login.senha.invalid">{{getErrorSenhaMessage()}}</mat-error>
                 </mat-form-field>
+                <button mat-flat-button class="primary_button w-100" type="submit" [disabled]="!formValid()">Entrar</button>
             </form>
-            <button mat-flat-button class="primary_button w-100">Entrar</button>
         </div>
     </div>
     <div class="col center_div">

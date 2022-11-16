@@ -1,0 +1,12 @@
+<h1 mat-dialog-title class="title_dialog mb-4">Excluir Pagamento</h1>
+
+<div>
+    <p>Usuário: {{data.name}}</p>
+    <p>Usuário: {{data.date}}</p>
+    <p>Usuário: {{data.value}}</p>
+</div>
+
+<div class="row justify-content-end mt-4">
+    <button mat-flat-button class="secondary_button px-4 mr-4" (click)="onNoClick()">CANCELAR</button>
+    <button mat-flat-button class="primary_button px-4" (click)="deletar()">CONFIRMAR</button>
+</div>
