@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from 'src/app/shared/services/task.service';
 import Swal from 'sweetalert2'
+import { format } from 'date-fns'
 
 export interface DialogData {
   id: string
@@ -26,6 +27,11 @@ export class DeleteTasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  formatarData(data: string){
+    const dataFormat = new Date(data);
+    return format(dataFormat, `dd/MM/yyyy`);
   }
 
   deletar(){

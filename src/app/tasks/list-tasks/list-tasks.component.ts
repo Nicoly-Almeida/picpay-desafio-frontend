@@ -98,7 +98,7 @@ export class ListTasksComponent implements OnInit {
   openDialogDeletar(task: Task){
     const dialogRef = this.dialog.open(DeleteTasksComponent, {
       width: '400px',
-      data: {id: task.id, name: task.name, value: task.value, date: task.date},
+      data: {id: task.id, name: task.name, value: task.value, date:task.date},
     })
     
     dialogRef.afterClosed().subscribe(result => {
