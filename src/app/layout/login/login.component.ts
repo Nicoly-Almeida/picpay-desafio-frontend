@@ -21,13 +21,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  onSubmit() {
-    try {
-      this.authenticationService.login(this.login);
-    } catch (error) {
-      console.error(error);
-    }
+  auth(email: string, senha: string){
+    this.authenticationService.login(email, senha)
+
   }
+
 
   formValid() {
     return this.login.email.valid && this.login.senha.valid;

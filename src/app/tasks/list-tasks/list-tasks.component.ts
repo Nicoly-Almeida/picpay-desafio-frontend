@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, Optional, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTasksComponent } from '../add-tasks/add-tasks.component';
 import { Task } from 'src/app/shared/model/task';
@@ -11,7 +11,7 @@ import { Page, PageRequest } from 'src/app/_util/pagination';
 import { Item } from 'src/app/shared/interfaces/item.model';
 import { take } from "rxjs/operators";
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-// import { format } from 'date-fns'
+import { format } from 'date-fns'
 
 
 @Component({
@@ -40,16 +40,23 @@ export class ListTasksComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private taskService: TaskService, public dialog: 
-  MatDialog, private formBuilder: FormBuilder) { 
+  constructor(private taskService: TaskService, @Optional() public dialog: 
+  MatDialog,  @Optional() private formBuilder: FormBuilder) { 
     this.tasks = new Array<Task>();
   }
 
   ngOnInit(): void {
     this.formGroupPesquisa = this.formBuilder.group({
-      nome: [null]
+      nome: [null],
+      title: [null],
+      date: [null],
     });
     this.listar();
+  }
+
+  formatarData(data: Date){
+    data = new Date(data);
+    return format(data, `dd/MM/yyyy`);
   }
 
   limparPesquisa() {
@@ -64,6 +71,9 @@ export class ListTasksComponent implements OnInit {
     const queryAdicional = new Map();
     if (this.formGroupPesquisa.value.nome) {
       queryAdicional.set("name_like", this.formGroupPesquisa.value.nome);
+    }
+    if (this.formGroupPesquisa.value.title) {
+      queryAdicional.set("title_like", this.formGroupPesquisa.value.title);
     }
     this.taskService.listar(
       new PageRequest(
@@ -104,15 +114,6 @@ export class ListTasksComponent implements OnInit {
       }
     )
   }
-
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
 
   openDialog(id: string): void {
     const dialogRef = this.dialog.open(AddTasksComponent, {

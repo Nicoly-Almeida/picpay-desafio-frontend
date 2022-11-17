@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,12 +16,13 @@ import { AddTasksComponent } from './tasks/add-tasks/add-tasks.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { DeleteTasksComponent } from './tasks/delete-tasks/delete-tasks.component';
 
-
 @NgModule({
   declarations: [	
     AppComponent, ListTasksComponent, HomeComponent, LoginComponent, AddTasksComponent, NavbarComponent, DeleteTasksComponent
    ],
   imports: [
+    FormsModule,
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -28,10 +30,10 @@ import { DeleteTasksComponent } from './tasks/delete-tasks/delete-tasks.componen
     ReactiveFormsModule,
     MaterialModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
 
   ],
-  providers: [],
+  providers: [HttpClientModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

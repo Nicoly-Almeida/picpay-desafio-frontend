@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { ListTasksComponent } from './list-tasks.component';
 
@@ -8,6 +10,7 @@ describe('ListTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, MatMenuModule],
       declarations: [ ListTasksComponent ]
     })
     .compileComponents();
@@ -19,7 +22,4 @@ describe('ListTasksComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

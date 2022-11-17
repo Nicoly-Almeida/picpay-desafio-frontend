@@ -21,8 +21,7 @@ export class TaskService {
     .pipe(
         map(response => <Page<Item>>Page.fromResponse(response))
     );
-
-}
+  }
 
   inserir(task: Task): Observable<Task[]> {
     return this.http.post<Task[]>(`${environment.api}/tasks`, task);

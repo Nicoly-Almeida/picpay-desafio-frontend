@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from 'src/app/shared/services/task.service';
 import { Task } from 'src/app/shared/model/task';
@@ -15,10 +15,11 @@ export interface DialogData {
 })
 export class AddTasksComponent implements OnInit {
   task: Task;
+  id: string;
 
   constructor(
-    public dialogRef: MatDialogRef<AddTasksComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private TaskService: TaskService,
+    @Optional() public dialogRef: MatDialogRef<AddTasksComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: DialogData, private TaskService: TaskService,
   ) {
     this.task = new Task('', '', '','', 0, '', '', false);
   }
@@ -28,24 +29,27 @@ export class AddTasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.TaskService.obterPorId(this.data.id).subscribe(
-      task => {
-        this.task.id = task.id;
-        this.task.name = task.name;
-        this.task.value = task.value;
-        this.task.title = task.title;
-        this.task.date = task.date;
-        this.task.image = task.image;
-        this.task.isPayed = task.isPayed;
-        this.task.username = task.username;
-      }
-    );
+    this.id = this.data.id != '' ? this.data.id : '';
+    if (this.id) {
+      this.TaskService.obterPorId(this.data.id).subscribe(
+        task => {
+          this.task.id = task.id;
+          this.task.name = task.name;
+          this.task.value = task.value;
+          this.task.title = task.title;
+          this.task.date = new Date(task.date).toString();
+          this.task.image = task.image;
+          this.task.isPayed = task.isPayed;
+          this.task.username = task.username;
+        }
+      );
+    }
     
   }
   
 
   salvar(){
-    if (this.data.id) {
+    if (this.data.id != '') {
       this.TaskService.editar(this.task).subscribe(
         result => {
           Swal.fire({
@@ -84,6 +88,13 @@ export class AddTasksComponent implements OnInit {
           })
         }
         );
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Preencha todos os campos!',
+        timer: 3000
+      })
     }
     }
   }

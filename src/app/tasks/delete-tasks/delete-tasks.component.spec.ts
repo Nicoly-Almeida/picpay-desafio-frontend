@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteTasksComponent } from './delete-tasks.component';
@@ -8,6 +9,7 @@ describe('DeleteTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ DeleteTasksComponent ]
     })
     .compileComponents();
@@ -19,7 +21,4 @@ describe('DeleteTasksComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

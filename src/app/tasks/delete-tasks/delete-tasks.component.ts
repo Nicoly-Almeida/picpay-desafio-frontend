@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from 'src/app/shared/services/task.service';
 import Swal from 'sweetalert2'
@@ -17,8 +17,8 @@ export interface DialogData {
 export class DeleteTasksComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<DeleteTasksComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private taskService: TaskService
+    @Optional() public dialogRef: MatDialogRef<DeleteTasksComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: DialogData, private taskService: TaskService
   ) { }
 
   onNoClick(): void {
