@@ -10,14 +10,14 @@
                     <form [formGroup]="formGroupPesquisa">
                         <mat-form-field appearance="outline" class="mr-2">
                             <mat-label>Pesquisar por usuário</mat-label>
-                            <input matInput #input formControlName="nome" (keyup)="listar()">
+                            <input matInput #input formControlName="nome">
                             <mat-icon matSuffix>
                                 <span class="material-symbols-outlined"> search </span>
                             </mat-icon>
                         </mat-form-field>
                     </form>
                         
-                    <button mat-flat-button class="secondary_button h-100 mt-2 mr-2" [matMenuTriggerFor]="menu">
+                    <button (click)="listar()" mat-flat-button class="secondary_button h-100 mt-2 mr-2">
                         <mat-icon matSuffix style="transform: rotate(-90deg)" class="mr-1">
                             <span class="material-symbols-outlined">
                             tune
@@ -25,14 +25,8 @@
                         </mat-icon>
                         Filtrar
                     </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item class="d-flex" style="align-items:center" (click)="$event.stopPropagation(); tituloCheck = !tituloCheck">
-                            <mat-checkbox class="example-margin mr-2 mt-1" [(ngModel)]="tituloCheck"></mat-checkbox> 
-                            <span>Título</span>
-                        </button>
-                    </mat-menu>
                     <button mat-flat-button class="primary_button h-100 mt-2" 
-                        matTooltip="Limpar Filtros" *ngIf="dataCheck || tituloCheck" 
+                        matTooltip="Limpar Filtros"
                         (click)="limparPesquisa()">
                         <mat-icon>
                             delete
@@ -48,16 +42,6 @@
                     (page)="pageEvent = $event; listar()"
                     showFirstLastButtons >
                 </mat-paginator>
-            </div>
-            <div class="row mx-0" style="background: white; align-items: center;">
-                <div class="mr-auto mb-0 ml-3">
-                    <form [formGroup]="formGroupPesquisa">
-                        <mat-form-field appearance="outline" class="mr-2" *ngIf="tituloCheck">
-                            <mat-label>Pesquisar por título</mat-label>
-                            <input matInput #input formControlName="title" (keyup)="listar()">
-                        </mat-form-field>
-                    </form>
-                </div>
             </div>
             <table mat-table [dataSource]="page.content">
           

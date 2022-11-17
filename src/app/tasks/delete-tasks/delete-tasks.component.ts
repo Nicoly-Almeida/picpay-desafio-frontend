@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from 'src/app/shared/services/task.service';
+import { EventEmitterService } from 'src/app/shared/services/event-emitter.service';
 import Swal from 'sweetalert2'
 import { format } from 'date-fns'
 
@@ -43,6 +44,7 @@ export class DeleteTasksComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Ok'
         })
+        EventEmitterService.get('deleteTask').emit(this.data.id)
         this.dialogRef.close();
       },
       error => {

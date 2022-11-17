@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskService } from 'src/app/shared/services/task.service';
 import { Task } from 'src/app/shared/model/task';
 import Swal from 'sweetalert2'
+import { EventEmitterService } from 'src/app/shared/services/event-emitter.service';
 
 export interface DialogData {
   id: string
@@ -58,6 +59,7 @@ export class AddTasksComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Ok'
           })
+          EventEmitterService.get('editTask').emit(this.task)
           this.dialogRef.close();
         },
         error => {
@@ -78,6 +80,7 @@ export class AddTasksComponent implements OnInit {
           showConfirmButton: false,
           timer: 3000
         });
+        EventEmitterService.get('addTask').emit(this.task)
         this.dialogRef.close();
       },
         error => {

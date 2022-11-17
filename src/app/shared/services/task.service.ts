@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../model/task';
 import { Page, QueryBuilder } from 'src/app/_util/pagination';
-import { Item } from '../interfaces/item.model';
 import { map } from 'rxjs/operators';
 
 
@@ -15,11 +14,11 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  listar(queryBuilder: QueryBuilder): Observable<Page<Item>> {
+  listar(queryBuilder: QueryBuilder): Observable<Page<Task>> {
     return this.http
-    .get<Item[]>(`${environment.api}/tasks?${queryBuilder.buildQueryString()}`, {observe: 'response'})
+    .get<Task[]>(`${environment.api}/tasks?${queryBuilder.buildQueryString()}`, {observe: 'response'})
     .pipe(
-        map(response => <Page<Item>>Page.fromResponse(response))
+        map(response => <Page<Task>>Page.fromResponse(response))
     );
   }
 
