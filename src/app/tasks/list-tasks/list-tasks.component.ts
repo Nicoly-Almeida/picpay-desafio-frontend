@@ -49,7 +49,6 @@ export class ListTasksComponent implements OnInit {
     this.formGroupPesquisa = this.formBuilder.group({
       nome: [null],
       title: [null],
-      date: [null],
     });
     this.listar();
   }
