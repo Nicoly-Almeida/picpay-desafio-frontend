@@ -37,7 +37,7 @@ export class AddTasksComponent implements OnInit {
           this.task.name = task.name;
           this.task.value = task.value;
           this.task.title = task.title;
-          this.task.date = new Date(task.date).toString();
+          this.task.date = task.date;
           this.task.image = task.image;
           this.task.isPayed = task.isPayed;
           this.task.username = task.username;
